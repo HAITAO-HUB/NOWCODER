@@ -1,0 +1,2 @@
+explain select * from employees;
+explain 关键字 描述表的细节
