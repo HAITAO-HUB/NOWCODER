@@ -26,3 +26,20 @@ public class Main{
         System.out.println(count);
     }
 }
+
+
+
+/*
+
+import java.util.*;
+public class Main{
+    public static void  main(String args[]){
+        Scanner scan=new Scanner(System.in);
+        int n=scan.nextInt();
+        int a=1024-n;
+        int count=a/64+a%64/16+a%16/4+a%4;
+        System.out.println(count);
+    }
+}
+
+*/
