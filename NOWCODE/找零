@@ -1,0 +1,28 @@
+Z国的货币系统包含面值1元、4元、16元、64元共计4种硬币，以及面值1024元的纸币。
+现在小Y使用1024元的纸币购买了一件价值为N (0 < N \le 1024)N(0<N≤1024)的商品，
+请问最少他会收到多少硬币？
+
+
+
+import java.util.*;
+public class Main{
+    public static void  main(String args[]){
+        Scanner scan=new Scanner(System.in);
+        int n=scan.nextInt();
+        int a=1024-n;
+        int count=0;
+        while(a!=0){
+            if(a>=64){
+                a=a-64;
+            }else if(a>=16&&a<64){
+                a=a-16;
+            }else if(a>=4&&a<16){
+                a=a-4;
+            }else if(a>=1&&a<4){
+                a=a-1;
+            }
+            count++;
+        }
+        System.out.println(count);
+    }
+}
