@@ -1,0 +1,19 @@
+给定两个不等于0的整数M和N，求M和N的最大公约数。
+
+
+import  java.util.*;
+public class Main{
+    public static void main(String args[]){
+        Scanner scan=new Scanner(System.in);
+        int a=scan.nextInt();
+        int b=scan.nextInt();
+        int tmp=0;
+       while(a%b!=0)
+       {
+           tmp=a%b;
+           a=b;
+           b=tmp;
+       }
+        System.out.println(b);
+    }
+}
