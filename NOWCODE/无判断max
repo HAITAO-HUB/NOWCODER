@@ -11,3 +11,12 @@ public class Max {
         return a>b?a:b;
     }
 }
+//解法二：
+import java.util.*;
+
+public class Max {
+    public int getMax(int a, int b) {
+        // write code here
+        return Math.max(a,b);
+    }
+}
