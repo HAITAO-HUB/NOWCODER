@@ -1,0 +1,53 @@
+输入两个链表，找出它们的第一个公共结点。
+（注意因为传入数据是链表，所以错误测试数据的提示是用其他方式显示的，保证传入数据是正确的
+
+/*
+public class ListNode {
+    int val;
+    ListNode next = null;
+
+    ListNode(int val) {
+        this.val = val;
+    }
+}*/
+public class Solution {
+    public ListNode FindFirstCommonNode(ListNode pHead1, ListNode pHead2) {
+  if(pHead1==null||pHead2==null){
+            return null;
+        }
+        ListNode pL=pHead1;
+        ListNode pS=pHead2;
+        int lenA=0;
+        int lenB=0;
+        while(pL!=null){
+            lenA++;
+            pL=pL.next;
+        }
+        while(pS!=null){
+            lenB++;
+            pS=pS.next;
+        }
+        int len=lenA-lenB;
+        if(len<0){
+            pL=pHead2;
+            pS=pHead1;
+            len=lenB-lenA;
+        }
+        else{
+             pS=pHead2;
+            pL=pHead1;
+        }
+        while(len>0){
+            pL=pL.next;
+            len--;
+        }
+        while(pL!=pS&&pL.next!=null){
+            pL=pL.next;
+            pS=pS.next;
+        }
+        if(pL==pS)
+        return pL;
+        else
+         return null;
+    }
+}
