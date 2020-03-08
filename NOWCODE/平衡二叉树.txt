@@ -1,0 +1,22 @@
+//import java.util.Math;
+public class Solution {
+    public int getHeight(TreeNode root){
+        if(root==null){
+            return 0;
+        }
+            int leftHeight=getHeight(root.left);
+            int rightHeight=getHeight(root.right);
+        return leftHeight>rightHeight?leftHeight+1:rightHeight+1;
+    }
+    public boolean IsBalanced_Solution(TreeNode root) {
+        if(root==null){
+            return true;
+        }
+        int leftHeight=getHeight(root.left);
+        int rightHeight=getHeight(root.right);
+        if(Math.abs(leftHeight-rightHeight)>1){
+            return false;
+        }
+        return true;
+    }
+}
