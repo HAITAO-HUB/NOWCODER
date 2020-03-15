@@ -1,0 +1,28 @@
+/**
+*    public class ListNode {
+*        int val;
+*        ListNode next = null;
+*
+*        ListNode(int val) {
+*            this.val = val;
+*        }
+*    }
+*
+*/
+import java.util.Stack;
+import java.util.ArrayList;
+public class Solution {
+    public ArrayList<Integer> printListFromTailToHead(ListNode listNode) {
+        Stack<ListNode> ret=new Stack<>();
+        ArrayList<Integer> arr=new ArrayList<>();
+        ListNode cur=listNode;
+        while(cur!=null){
+            ret.push(cur);
+            cur=cur.next;
+        }
+        while(!ret.isEmpty()){
+            arr.add(ret.pop().val);
+        }
+        return arr;
+    }
+}
