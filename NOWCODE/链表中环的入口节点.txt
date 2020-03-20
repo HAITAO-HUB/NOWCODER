@@ -1,0 +1,34 @@
+/*
+ public class ListNode {
+    int val;
+    ListNode next = null;
+
+    ListNode(int val) {
+        this.val = val;
+    }
+}
+*/
+public class Solution {
+
+    public ListNode EntryNodeOfLoop(ListNode pHead)
+    {
+        if(pHead==null||pHead.next==null){
+            return null;
+        }
+        ListNode p=pHead;
+        ListNode q=pHead;
+        while(q!=null&&q.next!=null){
+            p=p.next;
+            q=q.next.next;
+            if(q==p){
+                break;
+            }
+        }
+        p=pHead;
+        while(p!=q){
+            p=p.next;
+            q=q.next;
+        }
+        return p;
+    }
+}
