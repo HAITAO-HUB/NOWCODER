@@ -1,0 +1,23 @@
+public class Solution {
+    public double Power(double base, int exponent) {
+        double n=1;
+        if(exponent>0){
+            for(int i=1;i<=exponent;i++){
+                n*=base;
+            }
+            return n;
+        }
+        
+        if(exponent<0){
+            exponent=-exponent;
+            for(int i=1;i<=exponent;i++){
+                n*=base;
+            }
+            n=1.0/n;
+            return n;
+        }
+        else{
+            return 1;
+        }
+  }
+}
