@@ -1,0 +1,56 @@
+输入俩个字符串a,b，输出b插入a构成回文字符串的个数，
+输入有两行：
+a
+b
+输出一个整型
+
+
+
+import java.util.Scanner;
+
+public class test{
+    public static boolean show(String s){
+        if(s==null||s.length()==1){
+            return true;
+        }
+        int start=0;
+        int end=s.length()-1;
+        while(start<end){
+            if(s.charAt(start)==s.charAt(end)){
+                start++;
+                end--;
+            }
+            else{
+                return false;
+            }
+        }
+        return true;
+    }
+    public static String Link(String a,String b,int i){
+        String arr1="";
+        String arr2="";
+        for(int j=0;j<i;j++){
+            arr1=arr1+a.charAt(j);
+        }
+        for(int k=i;k<a.length();k++){
+            arr2=arr2+a.charAt(k);
+        }
+        String ret=arr1+b+arr2;
+        return ret;
+    }
+    public static void main(String[] args){
+        Scanner scan=new Scanner(System.in);
+        String a=scan.nextLine();
+        String b=scan.nextLine();
+        int cnt=0;
+        int n=a.length();
+        while(n>=0){
+            String arr=Link(a,b,n);
+            boolean flag=show(arr);
+            if(flag)
+                cnt++;
+            n--;
+        }
+        System.out.println(cnt);
+    }
+}
