@@ -1,0 +1,44 @@
+小易去买苹果，店家只提供6个每袋和8个每袋，小易只买n个（1<=n<=100），如果不能恰好买n个苹果，小易就不买了
+输入：输入一个整数，表示要买的苹果
+输出：输入一个整数，表示至少购买的袋数，如果不买返回-1
+
+
+
+import java.util.Scanner;
+
+public class Main {
+    public static int cnt(int a){
+        int k=a;
+        if(a<6){
+            return -1;
+        }
+        int count=0;
+        while(a>=8) {
+            a -= 8;
+            count++;
+        }
+        if(a==0)
+            return count;
+        while(a<=k) {
+            if (a % 6 == 0) {
+                count = count + a / 6;
+                break;
+            }
+            else {
+                count--;
+                a += 8;
+            }
+        }
+        if(a>k){
+            return -1;
+        }
+        else
+            return count;
+    }
+    public static void main(String[] args) {
+        Scanner scan=new Scanner(System.in);
+        int a=scan.nextInt();
+        int n=cnt(a);
+        System.out.println(n);
+    }
+}
