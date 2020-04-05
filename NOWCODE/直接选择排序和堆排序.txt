@@ -1,0 +1,63 @@
+import java.util.Arrays;
+import java.util.HashMap;
+
+public class selectSort {
+    //直接选择排序
+    public static void selectsort(int[] a){
+        for(int i=0;i<a.length-1;i++){
+            int max=0;
+            for(int j=1;j<a.length-i-1;j++){
+                if(a[j]>a[max]){
+                    max=j;
+                }
+            }
+            int t=a[max];
+            a[max]=a[a.length-i-1];
+            a[a.length-i-1]=t;
+        }
+    }
+    //堆排序
+    public static  void HeapSort(int[] a){
+        //建堆
+        int lastLeaf=(a.length-2)>>1;
+        //从lastLeaf到root的位置不断向下调整
+        for(int root=lastLeaf;root>=0;root--){
+            shiftDown(a,root,a.length);
+        }
+        int end=a.length-1;
+        while(end>=0){
+            swap(a,0,end);
+            shiftDown(a,0,end);
+            end--;
+        }
+    }
+    public static void shiftDown(int[] a,int parent,int size){
+        int child=parent*2+1;
+        while(child<size){
+            //左孩子存在,找左右孩子较大的
+            if(child+1<size&&a[child+1]>a[child]){
+                child=child+1;
+            }
+            //检测双亲是否比较大的孩子小
+            if(a[parent]<a[child]){
+                swap(a,parent,child);
+                parent=child;
+                child=parent*2+1;
+            }
+            else{
+                break;
+            }
+        }
+    }
+    public static void swap(int[] a,int left,int right){
+        int n=a[left];
+        a[left]=a[right];
+        a[right]=n;
+    }
+    public static void main(String[] args) {
+        int[] a={1,4,2,3,87,6,4,354,12,434};
+       // selectsort(a);
+        HeapSort(a);
+        System.out.println(Arrays.toString(a));
+    }
+}
