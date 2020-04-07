@@ -1,0 +1,45 @@
+找出n个数里最小的k个
+每个测试输入包含空格分割的n+1个整数，最后一个整数为k值,n
+不超过100。
+输出n个整数里最小的k个数。升序输出
+
+import java.util.Scanner;
+
+public class Main {
+    public static void shellSort(int[] a){
+        int gap=3;
+        while(gap>0) {
+            for (int i = gap; i < a.length; i++) {
+                int key = a[i];
+                int end = i - gap;
+                while (end>=0&&key < a[end]) {
+                    a[end + gap] = a[end];
+                    end -= gap;
+                }
+                a[end + gap] = key;
+            }
+            gap--;
+        }
+    }
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        String s=scan.nextLine();
+        String[] arr=s.split(" ");
+        int[] a=new int[arr.length-1];
+        int p = 0;
+        for(int i=0;i<arr.length;i++){
+            if(i<arr.length-1)
+                a[i]=Integer.parseInt(arr[i]);
+            else
+                p=Integer.parseInt(arr[i]);
+        }
+        shellSort(a);
+        for(int i=0;i<p;i++){
+            if(i<p-1)
+                System.out.print(a[i]+" ");
+            else {
+                System.out.println(a[i]);
+            }
+        }
+    }
+}
