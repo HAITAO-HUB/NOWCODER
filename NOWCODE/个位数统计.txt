@@ -1,0 +1,29 @@
+输入一个数字，输出其各个位出现的次数
+
+例：
+输入：1220
+输出：
+0：1
+1：1
+2：2
+
+
+
+import java.util.Scanner;
+
+//个位数统计（15）
+public class demo1 {
+    public static void main(String[] args) {
+        Scanner scan=new Scanner(System.in);
+        String n=scan.nextLine();
+        int[] arr=new int[10];
+        for(char x:n.toCharArray()){
+            arr[x-'0']++;
+        }
+        for(int i=0;i<arr.length;i++){
+            if(arr[i]!=0){
+                System.out.println(i+":"+arr[i]);
+            }
+        }
+    }
+}
