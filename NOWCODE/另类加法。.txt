@@ -1,0 +1,23 @@
+不使用+实现两个整数求和
+
+
+import java.util.Scanner;
+//另类加法
+public class demo1 {
+    public static int addAB(int A, int B) {
+     int cur=A^B;
+     int p=(A&B)<<1;
+     while(p!=0){
+        return addAB(cur,p);
+     }
+    return cur;
+    }
+    public static void main(String[] args) {
+        Scanner scan=new Scanner(System.in);
+        while(scan.hasNext()){
+            int a=scan.nextInt();
+            int b=scan.nextInt();
+            System.out.println(addAB(a,b));
+        }
+    }
+}
