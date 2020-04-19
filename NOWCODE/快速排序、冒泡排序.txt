@@ -1,0 +1,88 @@
+import java.util.Arrays;
+
+public class demo1 {
+    public static void quickSort(int[] array,int left,int right){
+        if(right-left>1){
+            int div=pation3(array,left,right);
+            quickSort(array,left,div);
+            quickSort(array,div+1,right);
+        }
+    }
+    public static int pation(int[] array,int left,int right){
+        int begin=left;
+        int end=right-1;
+        int key=array[end];
+        while (begin<end){
+            while (begin<end&&array[begin]<=key){
+                begin++;
+            }
+            while (begin<end&&array[end]>=key){
+                end--;
+            }
+            swap(array,begin,end);
+        }
+        if(begin!=right-1){
+            swap(array,begin,right-1);
+        }
+        return begin;
+    }
+    public static int pation2(int[] array,int left,int right){
+        int begin=left;
+        int end=right-1;
+        int key=array[end];
+        while (begin<end){
+            while (begin<end&&array[begin]<key){
+                begin++;
+            }
+            if(begin<end){
+                array[end--]=array[begin];
+            }
+            while (begin<end&&array[end]>key){
+                end--;
+            }
+            if (begin<end){
+                array[begin++]=array[end];
+            }
+        }
+        array[begin]=key;
+        return begin;
+    }
+    public static void swap(int[] array,int left,int right){
+        int tmp=array[left];
+        array[left]=array[right];
+        array[right]=tmp;
+    }
+    public static int pation3(int[] array,int left,int right){
+      int cur=left;
+      int prev=cur-1;
+      int key=array[right-1];
+      while (cur<right){
+          if(array[cur]<key&&++prev!=cur)
+              swap(array,cur,prev);
+          cur++;
+      }
+      if(++prev!=right-1){
+          swap(array,prev,right-1);
+      }
+      return prev;
+    }
+    //冒泡排序
+    public static void bullonbSort(int[] array){
+        int n=array.length;
+        for(int i=0;i<n;i++){
+           for(int j=0;j<n-i-1;j++){
+               if(array[j]>array[j+1]){
+                   int tmp=array[j];
+                   array[j]=array[j+1];
+                   array[j+1]=tmp;
+               }
+           }
+        }
+    }
+    public static void main(String[] args) {
+        int[] a={2,1,4,8,9,0,5,6,3,7};
+        quickSort(a,0,a.length);
+        //bullonbSort(a);
+        System.out.println(Arrays.toString(a));
+    }
+}
