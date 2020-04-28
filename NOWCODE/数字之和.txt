@@ -1,0 +1,23 @@
+//数字之和
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scan=new Scanner(System.in);
+        while (scan.hasNext()){
+            int n=scan.nextInt();
+            int count=n*n;
+            int a=0;
+            int b=0;
+            while (n!=0){
+                a+=n%10;
+                n/=10;
+            }
+            while (count!=0){
+                b+=count%10;
+                count/=10;
+            }
+            System.out.println(a+" "+b);
+        }
+    }
+}
