@@ -1,0 +1,42 @@
+题目描述
+一个整型数组里除了两个数字之外，其他的数字都出现了两次。请写程序找出这两个只出现一次的数字。
+
+
+
+//num1,num2分别为长度为1的数组。传出参数
+//将num1[0],num2[0]设置为返回结果
+public class Solution {
+    public void FindNumsAppearOnce(int [] array,int num1[] , int num2[]) {
+        int k=0;
+        for(int i=0;i<array.length;i++){
+            k^=array[i];
+        }
+        int count=-1;
+        for(int i=0;i<32;i++){
+           if((k>>i&1)==1){
+               count=i;
+               break;
+           }
+        }
+        int[] arr1=new int[array.length];
+        int[] arr2=new int[array.length];
+        int a=0,b=0;
+        for(int i=0;i<array.length;i++){
+            if((array[i]>>count&1)==0){
+                arr1[a++]=array[i];
+            }
+            else{
+                arr2[b++]=array[i];
+            }
+        }
+        int m=0,n=0;
+        for(int i=0;i<arr1.length;i++){
+            m^=arr1[i];
+        }
+        for(int i=0;i<arr2.length;i++){
+            n^=arr2[i];
+        }
+        num1[0]=m;
+        num2[0]=n;
+    }
+}
