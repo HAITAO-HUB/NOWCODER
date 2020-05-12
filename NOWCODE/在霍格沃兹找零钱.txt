@@ -1,0 +1,80 @@
+如果你是哈利·波特迷，你会知道魔法世界有它自己的货币系统 —— 就如海格告诉哈利的：“十七个银西可(Sickle)兑一个加隆(Galleon)，二
+
+十九个纳特(Knut)兑一个西可，很容易。”现在，给定哈利应付的价钱P和他实付的钱A，你的任务是写一个程序来计算他应该被找的零钱。
+
+输入描述:
+输入在1行中分别给出P和A，格式为“Galleon.Sickle.Knut”，其间用1个空格分隔。这里Galleon是[0, 107]]区间内的整数，Sickle是[0, 
+17)区间内的整数，Knut是[0, 29)区间内的整数。
+
+
+输出描述:
+在一行中用与输入同样的格式输出哈利应该被找的零钱。如果他没带够钱，那么输出的应该是负数。
+示例1
+输入
+10.16.27 14.1.28
+输出
+3.2.1
+
+
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scan=new Scanner(System.in);
+        while (scan.hasNext()){
+            String s=scan.nextLine();
+            String[] arr=s.split(" ");
+            String[] P=arr[0].split("\\.");
+            String[] A=arr[1].split("\\.");
+            int cnt=0;
+            int[] num=new int[3];
+
+          long numA=Integer.valueOf(A[0])*17*29+Integer.valueOf(A[1])*29+Integer.valueOf(A[2]);
+          long numP=Integer.valueOf(P[0])*17*29+Integer.valueOf(P[1])*29+Integer.valueOf(P[2]);
+
+            for(int i=2;i>=0;i--){
+                int a,p=0;
+                if(numA>numP){
+                     a=Integer.valueOf(A[i])-cnt;
+                     p=Integer.valueOf(P[i]);
+                }
+                else{
+                     a=Integer.valueOf(P[i])-cnt;
+                     p=Integer.valueOf(A[i]);
+                }
+
+                if(a-p-cnt<0){
+                    if(i==2){
+                        a+=29;
+                    }
+                    if(i==1){
+                        a+=17;
+                    }
+                    cnt=1;
+                }
+                else{
+                    cnt=0;
+                }
+                num[i]=a-p;
+            }
+            StringBuffer k=new StringBuffer();
+            for(int i=0;i<3;i++){
+                if(i==0){
+                    if(numA>numP){
+                        k.append(num[i]);
+                    }
+                    else{
+                        k.append(0-num[i]);
+                    }
+                    k.append(".");
+                    continue;
+                }
+                k.append(num[i]);
+                if(i!=2){
+                    k.append(".");
+                }
+            }
+            System.out.println(k.toString());
+        }
+    }
+}
