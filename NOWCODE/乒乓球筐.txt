@@ -1,0 +1,47 @@
+输入描述:
+输入有多组数据。
+每组数据包含两个字符串A、B，代表A盒与B盒中的乒乓球，每个乒乓球用一个大写字母表示，即相同类型的乒乓球为相同的大写字母。
+字符串长度不大于10000。
+
+
+输出描述:
+每一组输入对应一行输出：如果B盒中所有球的类型在A中都有，并且每种球的数量都不大于A，则输出“Yes”；否则输出“No”
+
+
+
+// write your code here
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+public class Main{
+    public static void main(String[] args){
+        Scanner scan=new Scanner(System.in);
+        while(scan.hasNext()){
+            String s=scan.nextLine();
+            String[] arr=s.split(" ");
+            Map<Character,Integer> a=new HashMap();
+            Map<Character,Integer> b=new HashMap();
+            for(int i=0;i<arr[0].length();i++){
+                if(!a.containsKey(arr[0].charAt(i))){
+                    a.put(arr[0].charAt(i),1);
+                }
+                else{
+                    a.put(arr[0].charAt(i),a.get(arr[0].charAt(i))+1);
+                }
+            }
+            int i=0;
+            for(;i<arr[1].length();i++){
+                if(a.containsKey(arr[1].charAt(i))&&a.get(arr[1].charAt(i))!=0){
+                    a.put(arr[1].charAt(i),a.get(arr[1].charAt(i))-1);
+                }
+                else
+                    break;
+            }
+            if(i<arr[1].length())
+                System.out.println("No");
+            else
+                System.out.println("Yes");
+        }
+    }
+}
