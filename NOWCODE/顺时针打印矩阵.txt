@@ -1,0 +1,53 @@
+题目描述
+对于一个矩阵，请设计一个算法从左上角(mat[0][0])开始，顺时针打印矩阵元素。
+
+给定int矩阵mat,以及它的维数nxm，请返回一个数组，数组中的元素为矩阵元素的顺时针输出。
+
+测试样例：
+[[1,2],[3,4]],2,2
+返回：[1,2,4,3]
+
+
+
+
+public static int[] clockwisePrint(int[][] mat, int n, int m) {
+        // write code here
+        int[] arr=new int[n*m];
+        if(mat==null||n<=0||m<=0){
+            return arr;
+        }
+        int start=0;
+        int cnt=0;
+        while (n>start*2&&m>start*2){
+            int endX=m-1-start;
+            int endY=n-1-start;
+
+            for(int i=start;i<=endX;i++){
+                arr[cnt]=mat[start][i];
+                cnt++;
+            }
+
+            if(start<endY){
+                for(int i=start+1;i<=endY;i++){
+                    arr[cnt]=mat[i][endX];
+                    cnt++;
+                }
+            }
+
+            if(start<endX&&start<endY){
+                for(int i=endX-1;i>=start;i--){
+                    arr[cnt]=mat[endY][i];
+                    cnt++;
+                }
+            }
+
+            if(start<endX&&start<endY-1){
+                for(int i=endY-1;i>=start+1;i--){
+                    arr[cnt]=mat[i][start];
+                    cnt++;
+                }
+            }
+            start++;
+        }
+        return arr;
+    }
