@@ -1,0 +1,79 @@
+查找和排序
+
+题目：输入任意（用户，成绩）序列，可以获得成绩从高到低或从低到高的排列,相同成绩
+都按先录入排列在前的规则处理。
+
+示例：
+jack      70
+peter     96
+Tom       70
+smith     67
+
+从高到低  成绩
+peter     96
+jack      70
+Tom       70
+smith     67
+
+从低到高
+
+smith     67
+
+jack      70
+Tom      70
+peter     96
+
+示例1
+
+
+
+输入
+
+3
+0
+fang 90
+yang 50
+ning 70
+
+
+
+输出
+
+fang 90
+ning 70
+yang 50
+
+import java.util.Scanner;
+import java.util.List;
+import java.util.ArrayList;
+
+public class Main{
+    public static void main(String[] args){
+        Scanner scan=new Scanner(System.in);
+        while(scan.hasNext()){
+            int n=scan.nextInt();
+            int a=scan.nextInt();
+            List<student> stu=new ArrayList<>();
+            for(int i=0;i<n;i++){
+                stu.add(new student(scan.next(),scan.nextInt()));
+            }
+            if(a==0)
+                stu.sort((o1,o2)->o2.grade-o1.grade);
+            else if(a==1)
+                stu.sort((o1,o2)->o1.grade-o2.grade);
+            for(student s:stu){
+                System.out.println(s.name+" "+s.grade);
+            }
+            
+        }
+    }
+}
+
+class student{
+    String name;
+    int grade;
+    public student(String name,int grade){
+        this.name=name;
+        this.grade=grade;
+    }
+}
